@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .forms import RegisterForm, LoginForm
-from .models import User, Login
+from .forms import RegisterForm, LoginForm, TweetForm
+from .models import User, Login, Tweet
 import bcrypt
 
 def register(request):
@@ -52,7 +52,26 @@ def logout(request):
 
 
 def home(request):
-    if 'user_id' in request.session:
-        return HttpResponse("user_id = " + str(request.session['user_id']))
-    else:
-        return HttpResponse("sesión no iniciada")
+    if 'user_id' not in request.session:
+        return redirect('login')
+    user = User.objects.filter(id=request.session['user_id'])
+    if not user:
+        return redirect('login')
+    logged_user = user[0]
+
+    form = TweetForm()
+
+    if request.method == 'POST':
+        form = TweetForm(request.POST)
+        if form.is_valid():
+            new_tweet = form.save(commit=False)
+            new_tweet.user = logged_user
+            new_tweet.save()
+            return redirect('home')
+
+    tweets = Tweet.objects.all().order_by('-created_at')
+
+    return render(request, template_name='home.html',
+                  context={'form': form, 'tweets': tweets})
+
+

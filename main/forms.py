@@ -1,6 +1,6 @@
 import re
 from django import forms
-from .models import User
+from .models import User, Tweet
 import bcrypt
 
 email_regex = r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$'
@@ -71,3 +71,10 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('Contraseña incorrecta')
 
         return cleaned_data
+
+
+class TweetForm(forms.ModelForm):
+
+    class Meta:
+        model = Tweet
+        fields = ['message']

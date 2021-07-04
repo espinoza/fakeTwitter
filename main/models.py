@@ -12,3 +12,10 @@ class Login(models.Model):
                              related_name='logins')
     datetime = models.DateTimeField(auto_now_add=True)
 
+class Tweet(models.Model):
+    message = models.CharField(max_length=249)
+    user = models.ForeignKey(to=User,
+                             on_delete=models.CASCADE,
+                             related_name='tweets')
+    created_at = models.DateTimeField(auto_now_add=True)
+
