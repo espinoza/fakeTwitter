@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import RegisterForm, LoginForm
-from .models import User
+from .models import User, Login
 import bcrypt
 
 def register(request):
@@ -17,7 +17,9 @@ def register(request):
             ).decode()
             new_user.password_hash = password_hash
             new_user.save()
+            Login.objects.create(user=new_user)
             request.session['user_id'] = new_user.id
+
             return redirect('home')
 
     return render(request, template_name='register.html',
@@ -37,6 +39,7 @@ def login(request):
             else:
                 user = User.objects.get(username=email_or_username)
             request.session['user_id'] = user.id
+            Login.objects.create(user=user)
             return redirect('home')
 
     return render(request, template_name='login.html',
