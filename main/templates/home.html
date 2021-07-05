@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bienvenido</title>
+  {% load static %}
 </head>
+
 <body>
-  <form action="{% url 'home' %}" method="post">
+
+  <form id="new-tweet-form" action="{% url 'home' %}" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Enviar">
   </form>
-  {% for tweet in tweets %}
-    <p>{{ tweet.user.full_name }} ({{ tweet.user.username }}) dice:</p>
-    <p>{{ tweet.message }}</p>
-  {% endfor %}
+    <button id="send-tweet">Enviar</button>
+
+  <div id="tweet-list">
+    {% for tweet in tweets %}
+      <div class="tweet">
+        <p>{{ tweet.user.full_name }} ({{ tweet.user.username }}) dice:</p>
+        <p>{{ tweet.message }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+  <script src="{% static 'newMessage.js' %}"></script>
+
 </body>
+
 </html>

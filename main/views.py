@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from .forms import RegisterForm, LoginForm, TweetForm
 from .models import User, Login, Tweet
 import bcrypt
+from django.http import JsonResponse
 
 def register(request):
 
@@ -74,4 +75,21 @@ def home(request):
     return render(request, template_name='home.html',
                   context={'form': form, 'tweets': tweets})
 
+
+def post_message(request):
+    if 'user_id' not in request.session:
+        return redirect('login')
+    user = User.objects.filter(id=request.session['user_id'])
+    if not user:
+        return redirect('login')
+    logged_user = user[0]
+
+    message = request.POST["message"]
+    Tweet.objects.create(message=message, user=logged_user)
+
+    return JsonResponse({
+        "message": message,
+        "userFullName": logged_user.full_name,
+        "username": logged_user.username,
+    })
 
