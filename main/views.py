@@ -16,7 +16,7 @@ def login_required(view):
         if not user:
             return redirect('login')
         logged_user = user[0]
-        return view(request, *args, **kwargs)
+        return view(request, logged_user, *args, **kwargs)
     return wrapper
 
 
@@ -72,18 +72,9 @@ def logout(request):
 
 
 @login_required
-def home(request):
+def home(request, logged_user):
     """Main page with a list of tweets and a form to post a new tweet."""
     form = TweetForm()
-
-    if request.method == 'POST':
-        form = TweetForm(request.POST)
-        if form.is_valid():
-            new_tweet = form.save(commit=False)
-            new_tweet.user = logged_user
-            new_tweet.save()
-            return redirect('home')
-
     tweets = Tweet.objects.all().order_by('-created_at')
 
     return render(request, template_name='home.html',
@@ -91,7 +82,7 @@ def home(request):
 
 
 @login_required
-def post_message(request):
+def post_message(request, logged_user):
     """POST request to create a new tweet with ajax."""
     message = request.POST["message"]
     Tweet.objects.create(message=message, user=logged_user)
