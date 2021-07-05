@@ -7,6 +7,7 @@ from django.http import JsonResponse
 
 
 def login_required(view):
+    """Decorator to redirect to login when there is not logged user."""
     @wraps(view)
     def wrapper(request, *args, **kwargs):
         if 'user_id' not in request.session:
@@ -20,7 +21,7 @@ def login_required(view):
 
 
 def register(request):
-
+    """User registration form view."""
     form = RegisterForm()
 
     if request.method == 'POST':
@@ -43,7 +44,9 @@ def register(request):
 
 
 def login(request):
-
+    """User login form view.
+    Email or username can be used on the same field.
+    """
     form = LoginForm()
 
     if request.method == 'POST':
@@ -63,13 +66,14 @@ def login(request):
 
 
 def logout(request):
+    """User logout view."""
     del request.session['user_id']
     return redirect('login')
 
 
 @login_required
 def home(request):
-
+    """Main page with a list of tweets and a form to post a new tweet."""
     form = TweetForm()
 
     if request.method == 'POST':
@@ -88,7 +92,7 @@ def home(request):
 
 @login_required
 def post_message(request):
-
+    """POST request to create a new tweet with ajax."""
     message = request.POST["message"]
     Tweet.objects.create(message=message, user=logged_user)
 
