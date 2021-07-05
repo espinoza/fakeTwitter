@@ -75,6 +75,8 @@ class LoginForm(forms.Form):
 
 class TweetForm(forms.ModelForm):
 
+    message = forms.CharField(widget=forms.Textarea)
+
     class Meta:
         model = Tweet
-        fields = ['message']
+        fields = []

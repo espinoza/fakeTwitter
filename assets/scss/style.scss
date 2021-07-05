@@ -1,0 +1,52 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+}
+
+.tweet, #new-tweet {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+#id_message {
+  width: 100%;
+  font-size: 18px;
+  height: 130px;
+  border: 1px solid gray;
+  background-color: lightblue;
+}
+
+.full-name {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.username {
+  color: gray;
+}
+
+
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  @for $i from 1 through 12 {
+    .col-s-#{$i} {width: $i * 8.33%;}
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  @for $i from 1 through 12 {
+    .col-#{$i} {width: $i * 8.33%;}
+  }
+}

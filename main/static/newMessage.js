@@ -10,14 +10,18 @@ function sendTweet() {
     data: formData,
     dataType: "JSON",
   }).done(function(response) {
-    $("#tweet-list").prepend(
-      tweetHtml(response.message, response.userFullName, response.username)
-    )
+    let newTweet = tweetHtml(
+      response.message, response.userFullName, response.username
+    );
+    $(newTweet).hide().prependTo("#tweet-list").fadeIn(1000);
   });
 
 }
 
 function tweetHtml(message, userFullName, username) {
-  return "<p> " + userFullName + "(" + username + ") dice:</p>"
-    + "<p>" + message + "</p>";
+  return '<div class="tweet"><div class="tweet-header">'
+         + '<span class="full-name">' + userFullName 
+         + '</span> <span class="username">@' + username
+         + '</span></div><div class="tweet-body">' + message
+         + '</div></div>';
 }

@@ -6,23 +6,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bienvenido</title>
   {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
 <body>
 
-  <form id="new-tweet-form" action="{% url 'home' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-  </form>
-    <button id="send-tweet">Enviar</button>
+  <div class="row">
 
-  <div id="tweet-list">
-    {% for tweet in tweets %}
-      <div class="tweet">
-        <p>{{ tweet.user.full_name }} ({{ tweet.user.username }}) dice:</p>
-        <p>{{ tweet.message }}</p>
+    <div class="col-3 col-s-2"></div>
+
+    <div class="col-6 col-s-8">
+
+      <div id="new-tweet">
+        <form id="new-tweet-form" action="{% url 'home' %}" method="post">
+          {% csrf_token %}
+          <p>¿Qué hay de nuevo?</p>
+          {{ form.message }}
+        </form>
+        <button id="send-tweet">Enviar</button>
       </div>
-    {% endfor %}
+
+      <div id="tweet-list">
+        {% for tweet in tweets %}
+          <div class="tweet">
+            <div class="tweet-header">
+              <span class="full-name">
+                {{ tweet.user.full_name }}
+              </span>
+              <span class="username">
+                @{{ tweet.user.username }}
+              </span>
+            </div>
+            <div class="tweet-body">
+              {{ tweet.message }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+
+    <div class="col-3 col-s-2"></div>
+
   </div>
 
   <script
