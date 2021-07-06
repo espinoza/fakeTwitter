@@ -75,7 +75,13 @@ class LoginForm(forms.Form):
 
 class TweetForm(forms.ModelForm):
 
-    message = forms.CharField(widget=forms.Textarea)
+    message = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                "placeholder": "¿Qué hay de nuevo?",
+            }
+        )
+    )
 
     class Meta:
         model = Tweet

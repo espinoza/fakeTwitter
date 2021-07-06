@@ -22,10 +22,9 @@
         <div id="new-tweet">
           <form id="new-tweet-form" action="{% url 'home' %}" method="post">
             {% csrf_token %}
-            <p>¿Qué hay de nuevo?</p>
             {{ form.message }}
           </form>
-          <button id="send-tweet">Enviar</button>
+          <button class="primary-btn" id="send-tweet">Enviar</button>
         </div>
     
         <div id="tweet-list">
