@@ -29,6 +29,10 @@
           {{ form.full_name }}
           {{ form.password }}
           <input class="primary-btn" type="submit" value="Enviar">
+          <p>
+            ¿Ya tienes cuenta?
+            <a href="{% url 'register' %}">¡Inicia sesión!</a>
+          </p>
         </form>
       </div>
 

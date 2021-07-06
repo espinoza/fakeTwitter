@@ -27,6 +27,10 @@
           {{ form.email_or_username }}
           {{ form.password }}
           <input class="primary-btn" type="submit" value="Enviar">
+          <p>
+            ¿No tienes cuenta?
+            <a href="{% url 'register' %}">¡Regístrate!</a>
+          </p>
         </form>
       </div>
 
