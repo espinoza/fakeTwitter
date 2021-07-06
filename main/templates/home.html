@@ -11,6 +11,17 @@
 
 <body>
 
+  <nav>
+    <span id="main-title">fakeTwitter</span>
+    <span id="user-options">
+      {% if request.session.user_id %}
+        <a href="{% url 'logout' %}">
+          Cerrar sesión
+        </a>
+      {% endif %}
+    </span>
+  </nav>
+
   <main>
 
     <div class="row">

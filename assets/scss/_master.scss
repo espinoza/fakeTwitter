@@ -8,17 +8,51 @@ $accent-color-alternative: #2e95e0;
 $accent-color-alternative2: #1e6aa0;
 
 *{
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	text-decoration: none;
-	border: none;
-	outline: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  border: none;
+  outline: none;
 }
 
 html {
   background-color: $background-color;
   color: $primary-color;
+}
+
+nav {
+  background-color: $accent-color;
+  color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+  padding: 10px 0px;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  #main-title {
+    flex-grow: 1;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 25px;
+  }
+  #user-options {
+    flex-grow: 1;
+    text-align: end;
+    padding-right: 20px;
+    margin: auto 0 auto 0;
+    a {
+      text-decoration: none;
+      &:visited {
+        color: white;
+      }
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
 }
 
 [class*="col-"] {
