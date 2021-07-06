@@ -12,9 +12,11 @@
 }
 
 #id_message {
+  width: calc(100% - 20px);
+  position: relative;
   resize: none;
-  margin: 10px 0;
   padding: 10px;
+  margin: 10px 0;
   font-size: 18px;
   height: 130px;
   border-radius: 10px;
