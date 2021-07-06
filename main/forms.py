@@ -9,11 +9,26 @@ username_regex = r'[A-Za-z0-9_]+'
 
 class RegisterForm(forms.ModelForm):
 
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={'placeholder': 'Contraseña'}
+        )
+    )
 
     class Meta:
         model = User
         fields = ['username', 'email', 'full_name']
+        widgets = {
+            'username': forms.TextInput(
+                attrs={'placeholder': 'Nombre de usuario'}
+            ),
+            'email': forms.TextInput(
+                attrs={'placeholder': 'Correo'}
+            ),
+            'full_name': forms.TextInput(
+                attrs={'placeholder': 'Nombre completo'}
+            ),
+        }
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -43,16 +58,12 @@ class LoginForm(forms.Form):
 
     email_or_username = forms.CharField(
         widget=forms.TextInput(
-            attrs={
-                'placeholder': 'Correo o nombre de usuario',
-            }
+            attrs={'placeholder': 'Correo o nombre de usuario'}
         )
     )
     password = forms.CharField(
         widget=forms.PasswordInput(
-            attrs={
-                'placeholder': 'Contraseña',
-            }
+            attrs={'placeholder': 'Contraseña'}
         )
     )
 
@@ -87,14 +98,11 @@ class LoginForm(forms.Form):
 
 class TweetForm(forms.ModelForm):
 
-    message = forms.CharField(
-        widget=forms.Textarea(
-            attrs={
-                "placeholder": "¿Qué hay de nuevo?",
-            }
-        )
-    )
-
     class Meta:
         model = Tweet
-        fields = []
+        fields = ['message']
+        widgets = {
+            'message': forms.Textarea(
+                attrs={'placeholder': '¿Qué hay de nuevo?'}
+            )
+        }

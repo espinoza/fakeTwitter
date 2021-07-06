@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regístrate</title>
-</head>
-<body>
-  <h1>Regístrate</h1>
 
-  <form action="{% url 'register' %}" method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Enviar">
-  </form>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'authStyle.css' %}">
+
+</head>
+
+<body>
+
+  <main>
+
+    <div class="row">
+
+      <div class="col-m-2"></div>
+
+      <div class="col-m-8">
+        <h1>Regístrate</h1>
+        
+        <form action="{% url 'register' %}" method="POST">
+          {% csrf_token %}
+          {{ form.username }}
+          {{ form.email }}
+          {{ form.full_name }}
+          {{ form.password }}
+          <input class="primary-btn" type="submit" value="Enviar">
+        </form>
+      </div>
+
+      <div class="col-m-2"></div>
+
+    </div>
+
+  </main>
   
 </body>
+
 </html>
