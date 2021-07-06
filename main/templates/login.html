@@ -1,49 +1,35 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html lang="en">
+{% block title %}
+  Iniciar sesión
+{% endblock title %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar sesión</title>
-
+{% block style %}
   {% load static %}
   <link rel="stylesheet" href="{% static 'authStyle.css' %}">
+{% endblock style %}
 
-</head>
+{% block main %}
+  <div class="row">
 
-<body>
-
-  <nav>
-    <h2>fakeTwitter</h2>
-  </nav>
-
-  <main>
-
-    <div class="row">
-
-      <div class="col-m-1"></div>
-        
-      <div class="col-m-10">
-        <h1>Iniciar sesión</h1>
-        <form action="{% url 'login' %}" method="post">
-          {% csrf_token %}
-          {{ form.email_or_username }}
-          {{ form.password }}
-          <input class="primary-btn" type="submit" value="Enviar">
-          <p>
-            ¿No tienes cuenta?
-            <a href="{% url 'register' %}">¡Regístrate!</a>
-          </p>
-        </form>
-      </div>
-
-      <div class="col-m-1"></div>
-
+    <div class="col-m-1"></div>
+      
+    <div class="col-m-10">
+      <h1>Iniciar sesión</h1>
+      <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{ form.email_or_username }}
+        {{ form.password }}
+        <input class="primary-btn" type="submit" value="Enviar">
+        <p>
+          ¿No tienes cuenta?
+          <a href="{% url 'register' %}">¡Regístrate!</a>
+        </p>
+      </form>
     </div>
 
-  </main>
-  
-</body>
+    <div class="col-m-1"></div>
 
-</html>
+  </div>
+{% endblock main %}
+
