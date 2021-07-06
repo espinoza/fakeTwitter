@@ -1,0 +1,35 @@
+@import 'master';
+
+main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin: 10px;
+}
+
+input {
+  margin: 10px auto;
+  background-color: black;
+  color: $primary-color;
+  border: $secondary-color solid 1px;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 5px;
+  width: 92%;
+  &:focus {
+    background-color: $focus-background-color;
+    box-shadow: 0 0 2px 2px $accent-color;
+  }
+}
+
+form {
+  text-align: center;
+}
+
+label {
+  margin: auto auto auto 0;
+}

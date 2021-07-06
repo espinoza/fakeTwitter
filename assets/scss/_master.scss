@@ -1,8 +1,11 @@
 $background-color: black;
 $primary-color: #d9d9d9;
 $secondary-color: #52585d;
-$focus-background-color: #090909;
+$focus-background-color: #040f17;
+$focus-background-color2: #0c293e;
 $accent-color: #32a1f2;
+$accent-color-alternative: #2e95e0;
+$accent-color-alternative2: #1e6aa0;
 
 *{
 	margin: 0;
@@ -23,51 +26,28 @@ html {
   &:after {
   content: "\200b";
   }
-
-}
-
-.tweet, #new-tweet {
-  margin: 15px 10px;
-  padding: 10px 15px;
-  border: 1px solid $secondary-color;
-  border-radius: 10px;
-}
-
-.tweet:hover {
-  background-color: $focus-background-color;
-}
-
-#id_message {
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 18px;
-  height: 130px;
-  border: 1px solid $primary-color;
-  border-radius: 10px;
-  background-color: $focus-background-color;
-  color: $primary-color;
-  &::placeholder  {
-    color: $secondary-color;
-  }
-}
-
-.full-name {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.username {
-  color: $secondary-color;
 }
 
 .primary-btn {
   background-color: $accent-color;
   color: white;
+  &:hover {
+    background-color: $accent-color-alternative;
+  }
+  &:focus {
+    background-color: $accent-color-alternative2;
+  }
 }
 
 .secondary-btn {
   background-color: $background-color;
   color: $accent-color;
+  &:hover {
+    background-color: $focus-background-color;
+  }
+  &:focus {
+    background-color: $focus-background-color2;
+  }
 }
 
 [class$="-btn"] {
@@ -78,9 +58,8 @@ html {
   border-radius: 20px;
 }
 
-/* For mobile phones: */
 @media only screen and (max-width: 599px) {
-  /* For tablets: */
+  /* For mobile phones: */
   [class*="col-"] {
     width: 100%;
   }
@@ -101,7 +80,7 @@ html {
 }
 
 @media only screen and (min-width: 1200px) {
-  /* For desktop: */
+  /* For large desktop: */
   @for $i from 1 through 12 {
     .col-xl-#{$i} {width: $i * 8.33%;}
   }

@@ -41,8 +41,20 @@ class RegisterForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
 
-    email_or_username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email_or_username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Correo o nombre de usuario',
+            }
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Contraseña',
+            }
+        )
+    )
 
     def clean(self):
         cleaned_data = super().clean()

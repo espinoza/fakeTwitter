@@ -1,0 +1,35 @@
+@import 'master';
+
+.tweet, #new-tweet {
+  margin: 15px 10px;
+  padding: 10px 15px;
+  border: 1px solid $secondary-color;
+  border-radius: 10px;
+}
+
+.tweet:hover {
+  background-color: $focus-background-color;
+}
+
+#id_message {
+  resize: none;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 18px;
+  height: 130px;
+  border-radius: 10px;
+  background-color: $focus-background-color;
+  color: $primary-color;
+  &::placeholder  {
+    color: $secondary-color;
+  }
+}
+
+.full-name {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.username {
+  color: $secondary-color;
+}

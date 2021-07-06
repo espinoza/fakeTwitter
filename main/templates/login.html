@@ -1,17 +1,41 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar sesión</title>
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'authStyle.css' %}">
+
 </head>
+
 <body>
-  <h1>Iniciar sesión</h1>
-  <form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Enviar">
-  </form>
+
+  <main>
+
+    <div class="row">
+
+      <div class="col-s-12 col-m-1"></div>
+        
+      <div class="col-s-12 col-m-10">
+        <h1>Iniciar sesión</h1>
+        <form action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+          {{ form.email_or_username }}
+          {{ form.password }}
+          <input class="primary-btn" type="submit" value="Enviar">
+        </form>
+      </div>
+
+      <div class="col-s-12 col-m-1"></div>
+
+    </div>
+
+  </main>
   
 </body>
+
 </html>
