@@ -32,6 +32,10 @@ def redirect_if_logged(view):
     return wrapper
 
 
+def index(request):
+    return redirect('home')
+
+
 @redirect_if_logged
 def register(request):
     """User registration form view."""
