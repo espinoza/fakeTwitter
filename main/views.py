@@ -20,6 +20,19 @@ def login_required(view):
     return wrapper
 
 
+def redirect_if_logged(view):
+    """Decorator to redirect to login when there is not logged user."""
+    @wraps(view)
+    def wrapper(request, *args, **kwargs):
+        if 'user_id' in request.session:
+            user = User.objects.filter(id=request.session['user_id'])
+            if user:
+                return redirect('home')
+        return view(request, *args, **kwargs)
+    return wrapper
+
+
+@redirect_if_logged
 def register(request):
     """User registration form view."""
     form = RegisterForm()
@@ -43,6 +56,7 @@ def register(request):
                   context={'form': form})
 
 
+@redirect_if_logged
 def login(request):
     """User login form view.
     Email or username can be used on the same field.
