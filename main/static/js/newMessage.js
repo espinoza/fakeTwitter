@@ -19,7 +19,9 @@ function sendTweet() {
         response.created_at
       );
       $(newTweet).hide().prependTo("#tweet-list").fadeIn(1000);
+      $("#last-tweet-info").text("Último tweet");
       $("#last-tweet-message").text(response.message);
+      $("#last-tweet-date").text("El " + response.created_at);
       $("#id_message").val("");
     }
   });

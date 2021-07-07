@@ -119,6 +119,7 @@ def home(request, logged_user):
     form = TweetForm()
     tweets = Tweet.objects.all().order_by('-created_at')
     user_last_tweet = Tweet.objects.filter(user=logged_user).last()
+    print(user_last_tweet)
     user_last_logins = Login.objects.filter(user=logged_user) \
                                     .order_by("-datetime")[:10]
 
