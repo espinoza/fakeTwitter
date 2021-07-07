@@ -15,11 +15,24 @@ main {
   }
 }
 
+#registration-info {
+  margin-top: 15px;
+}
+
 .tweet, #new-tweet {
   margin: 15px 10px;
   padding: 10px 15px;
   border: 1px solid $secondary-color;
   border-radius: 10px;
+  text-align: left;
+}
+
+#new-tweet {
+  text-align: right;
+}
+
+.tweet {
+  text-align: left;
 }
 
 .tweet:hover {

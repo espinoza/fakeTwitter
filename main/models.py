@@ -6,9 +6,14 @@ class User(models.Model):
     email = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
     password_hash = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"User {self.username} '{self.full_name}'"
+
+    @property
+    def formatted_date(self):
+        return self.created_at.strftime("%d/%m/%Y")
 
 
 class Login(models.Model):

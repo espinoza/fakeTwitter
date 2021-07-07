@@ -118,12 +118,14 @@ def home(request, logged_user):
 
     form = TweetForm()
     tweets = Tweet.objects.all().order_by('-created_at')
-    user_last_logins = Login.objects.filter(user=logged_user).order_by("-datetime")[:10]
+    user_last_logins = Login.objects.filter(user=logged_user) \
+                                    .order_by("-datetime")[:10]
 
     return render(request, template_name='home.html',
                   context={
                       'form': form,
                       'tweets': tweets,
                       'user_last_logins': user_last_logins,
+                      'user': logged_user,
                   })
 
