@@ -4,6 +4,18 @@ main {
   margin-top: 45px;
 }
 
+.logins {
+  margin-top: 20px;
+  padding: 15px;
+  border: solid 1px $accent-color-alternative2;
+  border-radius: 10px;
+  background-color: $focus-background-color;
+  display: inline-block;
+  li {
+    margin: 10px 0;
+  }
+}
+
 .tweet, #new-tweet {
   margin: 15px 10px;
   padding: 10px 15px;

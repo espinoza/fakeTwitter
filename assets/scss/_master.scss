@@ -55,8 +55,14 @@ nav {
   }
 }
 
+.row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 [class*="col-"] {
-  float: left;
+  text-align: center;
   &:after {
   content: "\200b";
   }

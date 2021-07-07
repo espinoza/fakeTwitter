@@ -107,19 +107,23 @@ def home(request, logged_user):
             new_tweet = Tweet.objects.create(
                 message=message, user=logged_user
             )
-            formatted_created_at = new_tweet.created_at \
-                .strftime("%d/%m/%Y a las %H:%M (%Z)")
 
         return JsonResponse({
             "message": message,
             "userFullName": logged_user.full_name,
             "username": logged_user.username,
-            "created_at": formatted_created_at,
+            "created_at": new_tweet.formatted_created_at,
             "errors": form.errors,
         })
 
     form = TweetForm()
     tweets = Tweet.objects.all().order_by('-created_at')
+    user_last_logins = Login.objects.filter(user=logged_user).order_by("-datetime")[:10]
 
     return render(request, template_name='home.html',
-                  context={'form': form, 'tweets': tweets})
+                  context={
+                      'form': form,
+                      'tweets': tweets,
+                      'user_last_logins': user_last_logins,
+                  })
+

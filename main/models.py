@@ -20,6 +20,10 @@ class Login(models.Model):
     def __str__(self):
         return f"Login at {self.datetime} by user {self.user.username}"
 
+    @property
+    def formatted_datetime(self):
+        return self.datetime.strftime("%d/%m/%Y a las %H:%M (%Z)")
+
 
 class Tweet(models.Model):
     message = models.CharField(max_length=249)
