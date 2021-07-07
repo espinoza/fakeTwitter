@@ -1,6 +1,8 @@
 from django.db import models
 
+
 class User(models.Model):
+    """Represents a person who uses the app."""
     full_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
@@ -9,7 +11,9 @@ class User(models.Model):
     def __str__(self):
         return f"User {self.username} '{self.full_name}'"
 
+
 class Login(models.Model):
+    """Represents the login history of an user."""
     user = models.ForeignKey(to=User,
                              on_delete=models.CASCADE,
                              related_name='logins')
@@ -18,7 +22,9 @@ class Login(models.Model):
     def __str__(self):
         return f"Login at {self.datetime} by user {self.user.username}"
 
+
 class Tweet(models.Model):
+    """A tweet from an user."""
     message = models.CharField(max_length=249)
     user = models.ForeignKey(to=User,
                              on_delete=models.CASCADE,

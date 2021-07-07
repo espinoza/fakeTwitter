@@ -1,9 +1,9 @@
 from functools import wraps
+import bcrypt
 from django.shortcuts import render, redirect, HttpResponse
+from django.http import JsonResponse
 from .forms import RegisterForm, LoginForm, TweetForm
 from .models import User, Login, Tweet
-import bcrypt
-from django.http import JsonResponse
 
 
 def login_required(view):

@@ -1,7 +1,7 @@
 import re
+import bcrypt
 from django import forms
 from .models import User, Tweet
-import bcrypt
 from .utils import contains_digit, contains_uppercase
 
 email_regex = r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$'
