@@ -23,7 +23,6 @@ class RegisterForm(forms.ModelForm):
         )
     )
 
-
     class Meta:
         model = User
         fields = ['username', 'email', 'full_name']
@@ -43,6 +42,9 @@ class RegisterForm(forms.ModelForm):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
+
+        # Password must contains at least 8 characters, 1 digit,
+        # and 1 uppercase letter
         if len(password) < 8:
             raise forms.ValidationError(
                 {'password': 'La contraseña debe tener al menos 8 caracteres'}
@@ -55,6 +57,7 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError(
                 {'password': 'La contraseña debe tener al menos 1 mayúscula'}
             )
+
         if password != confirm_password:
             raise forms.ValidationError(
                 {'confirm_password': 'Las contraseñas no coinciden'}
@@ -64,21 +67,15 @@ class RegisterForm(forms.ModelForm):
         username = self.cleaned_data['username']
         user = User.objects.filter(username=username)
         if not re.fullmatch(username_regex, username):
-            raise forms.ValidationError(
-                'Nombre de usuario no válido'
-            )
+            raise forms.ValidationError('Nombre de usuario no válido')
         if user:
-            raise forms.ValidationError(
-                'El nombre de usuario ya existe'
-            )
+            raise forms.ValidationError('El nombre de usuario ya existe')
         return username
 
     def clean_email(self):
         email = self.cleaned_data['email']
         if not re.fullmatch(email_regex, email):
-            raise forms.ValidationError(
-                'Correo no válido'
-            )
+            raise forms.ValidationError('Correo no válido')
         user = User.objects.filter(email=email)
         if user:
             raise forms.ValidationError(
@@ -89,9 +86,7 @@ class RegisterForm(forms.ModelForm):
     def clean_full_name(self):
         full_name = self.cleaned_data['full_name']
         if not re.fullmatch(full_name_regex, full_name):
-            raise forms.ValidationError(
-                'Solo se permiten letras y espacios'
-            )
+            raise forms.ValidationError('Solo se permiten letras y espacios')
         return full_name
 
 
