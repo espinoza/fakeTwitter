@@ -10,26 +10,21 @@
 {% endblock style %}
 
 {% block main %}
-  <div class="row">
 
-    <div class="col-m-1"></div>
-      
-    <div class="col-m-10">
-      <h1>Iniciar sesión</h1>
-      <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        {{ form.email_or_username }}
-        {{ form.password }}
-        <input class="primary-btn" type="submit" value="Enviar">
-        <p>
-          ¿No tienes cuenta?
-          <a href="{% url 'register' %}">¡Regístrate!</a>
-        </p>
-      </form>
-    </div>
+  <h1>Iniciar sesión</h1>
 
-    <div class="col-m-1"></div>
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {{ form.email_or_username }}
+    {{ form.errors.email_or_username }}
+    {{ form.password }}
+    {{ form.errors.password }}
+    <input class="primary-btn" type="submit" value="Enviar">
+    <p>
+      ¿No tienes cuenta?
+      <a href="{% url 'register' %}">¡Regístrate!</a>
+    </p>
+  </form>
 
-  </div>
 {% endblock main %}
 

@@ -6,7 +6,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 400px;
+  max-width: 330px;
   margin: 0 auto;
 }
 
@@ -32,7 +32,8 @@ input {
   border-radius: 10px;
   font-size: 18px;
   padding: 5px;
-  width: 92%;
+  width: 95%;
+  max-width: 95vw;
   &:focus {
     background-color: $focus-background-color;
     box-shadow: 0 0 2px 2px $accent-color;
