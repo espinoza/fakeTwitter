@@ -150,7 +150,10 @@ class TweetForm(forms.Form):
 
     message = forms.CharField(
         widget=forms.Textarea(
-            attrs={'placeholder': '¿Qué hay de nuevo?'}
+            attrs={
+                'placeholder': '¿Qué hay de nuevo?',
+                'maxlength': 249,
+            }
         )
     )
 

@@ -54,8 +54,8 @@ main {
   resize: none;
   padding: 10px;
   margin: 10px 0;
-  font-size: 18px;
-  height: 130px;
+  font-size: 13px;
+  height: 180px;
   border-radius: 10px;
   background-color: $focus-background-color;
   color: $primary-color;
@@ -92,6 +92,42 @@ main {
 [class*="tweet-"] {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+@for $i from 1 through 10 {
+  @media only screen and (min-width: 300px + $i * 20px) {
+    #id_message {
+      font-size: 13px;
+      height: 210px - ($i * 10px);
+    }
+  }
+}
+
+@for $i from 0 through 10 {
+  @media only screen and (min-width: 600px + $i * 15px) {
+    #id_message {
+      font-size: 15px;
+      height: 210px - ($i * 5px);
+    }
+  }
+}
+
+@for $i from 0 through 10 {
+  @media only screen and (min-width: 768px + $i * 30px) {
+    #id_message {
+      font-size: 16px;
+      height: 220px - ($i * 5px);
+    }
+  }
+}
+
+@for $i from 0 through 14 {
+  @media only screen and (min-width: 1200px + $i * 30px) {
+    #id_message {
+      font-size: 17px;
+      height: 230px - ($i * 5px);
+    }
+  }
 }
 
 @media only screen and (max-width: 767px) {

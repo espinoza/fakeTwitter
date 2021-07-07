@@ -1,4 +1,5 @@
 $("#send-tweet").click(sendTweet);
+$("#id_message").bind('change keyup', changeCounter);
 
 function sendTweet() {
 
@@ -36,3 +37,12 @@ function tweetHtml(message, userFullName, username, created_at) {
          + '</div><div class="tweet-footer">' + created_at
          + '</div></div>';
 }
+
+function changeCounter() {
+  $("#counter").text($("#id_message").val().length);
+  if ($("#counter").text() >= 249) {
+    $("#char-count").addClass("bold");
+  } else {
+    $("#char-count").removeClass("bold");
+  }
+};

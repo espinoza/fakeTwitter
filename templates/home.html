@@ -49,6 +49,9 @@
         <form id="new-tweet-form" action="{% url 'home' %}" method="post">
           {% csrf_token %}
           {{ form.message }}
+          <p id="char-count">
+            <span id="counter">0</span> / 249
+          </p>
         </form>
         <button class="primary-btn" id="send-tweet">Enviar</button>
       </div>
