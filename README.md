@@ -2,6 +2,8 @@
 
 A simple Twitter clon.
 
+[Visit here](http://52.15.51.235/)
+
 ## Requirements
 * `Python3`
 * `Postgresql`
