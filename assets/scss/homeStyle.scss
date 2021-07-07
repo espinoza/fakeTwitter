@@ -76,11 +76,16 @@ main {
   font-size: 20px;
 }
 
+.username {
+  color: $accent-color-alternative2;
+  
+}
+
 .tweet-body {
   font-size: 20px;
 }
 
-.tweet-footer, .username, .date {
+.tweet-footer, .date {
   color: $secondary-color;
 }
 

@@ -97,6 +97,10 @@ nav {
   font-style: italic;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 [class$="-btn"] {
   border: $accent-color solid 1px;
   font-size: 15px;

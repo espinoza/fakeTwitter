@@ -16,10 +16,9 @@
       <div id="user-info" class="info">
         <p class="full-name">{{ user.full_name }}<p>
         <p class="username">@{{ user.username }}<p>
-        <p id="last-tweet-info">Último tweet:
-          <p id="last-tweet-message" class="quote">
-            {{ user_last_tweet.message }}
-          </p>
+        <p id="last-tweet-info" class="bold">Último tweet:</p>
+        <p id="last-tweet-message" class="quote">
+          {{ user_last_tweet.message }}
         </p>
         <p class="date">El {{ user_last_tweet.formatted_created_at }}</p>
         <p id="registration-info">En fakeTwitter desde el</p>
@@ -64,7 +63,7 @@
     <div class="right-column col-s-12 col-m-12 col-l-3 col-xl-3">
       <h2 id="extend-footer" class="arrow">↑</h2>
       <div id="login-info" class="info">
-        <p>Últimos inicios de sesión:</p>
+        <p class="bold">Últimos inicios de sesión:</p>
         <ul>
           {% for login in user_last_logins %}
             <li>
