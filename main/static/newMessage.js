@@ -19,6 +19,8 @@ function sendTweet() {
         response.created_at
       );
       $(newTweet).hide().prependTo("#tweet-list").fadeIn(1000);
+      $("#last-tweet-message").text(response.message);
+      $("#id_message").val("");
     }
   });
 

@@ -21,6 +21,12 @@ html {
   color: $primary-color;
 }
 
+main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
 nav {
   background-color: $accent-color;
   color: white;
@@ -57,7 +63,7 @@ nav {
 
 .row {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -88,6 +94,10 @@ nav {
   &:focus {
     background-color: $focus-background-color2;
   }
+}
+
+.quote {
+  font-style: italic;
 }
 
 [class$="-btn"] {
