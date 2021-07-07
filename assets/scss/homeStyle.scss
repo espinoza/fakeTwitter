@@ -16,6 +16,10 @@ main {
   }
 }
 
+.arrow {
+  margin: 0;
+}
+
 #last-tweet-info {
   margin-top: 15px;
 }
@@ -93,13 +97,17 @@ main {
     background-color: $accent-color;
   }
   .center-column {
-    margin-top: 45px;
+    margin-top: 25px;
   }
   .right-column {
     bottom: 0;
   }
   .info {
     display: none;
+    background-color: $accent-color;
+    border: none;
+    color: white;
+    margin-top: 0;
   }
   .arrow {
     display: block;
@@ -119,7 +127,7 @@ main {
     bottom: 0;
   }
   .info {
-    display: inline-block;
+    display: inline-block !important;
   }
   .arrow {
     display: none;
