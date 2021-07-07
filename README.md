@@ -18,6 +18,6 @@ A simple Twitter clon.
 5. Install Python packages: `pip install -r requirements.txt`
 6. Create Postgresql database: `NAME: fake_twitter`, `USER: postgres`, `PASSWORD: root`
 7. Migrate database: `python manage.py migrate`
-8. Compile CSS files: `node-sass assets/scss -o static/css`
+8. Compile CSS files: `node-sass assets/scss -o main/static/css`
 9. Run server: `python manage runserver`
 10. Open a browser and go to `http://localhost:8000`
