@@ -3,16 +3,29 @@
 main {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 h1 {
-  margin: 10px;
+  margin: 50px 10px 10px 10px;
+}
+
+form {
+  text-align: center;
+}
+
+.errorlist {
+  font-size: 15px;
+  color: red;
+  font-weight: bold;
 }
 
 input {
-  margin: 10px auto;
+  margin: 10px 0;
   background-color: black;
   color: $primary-color;
   border: $secondary-color solid 1px;
@@ -33,10 +46,6 @@ input:-webkit-autofill:active
 {
  -webkit-box-shadow: 0 0 0 30px $focus-background-color inset !important;
  -webkit-text-fill-color: $primary-color;
-}
-
-form {
-  text-align: center;
 }
 
 label {

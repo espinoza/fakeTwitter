@@ -2,9 +2,11 @@ import re
 from django import forms
 from .models import User, Tweet
 import bcrypt
+from .utils import contains_digit, contains_uppercase
 
 email_regex = r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$'
-username_regex = r'[A-Za-z0-9_]+'
+username_regex = r'^[A-Za-z0-9_]+$'
+full_name_regex = r'^[A-Za-z\s]+$'
 
 
 class RegisterForm(forms.ModelForm):
@@ -14,6 +16,13 @@ class RegisterForm(forms.ModelForm):
             attrs={'placeholder': 'Contraseña'}
         )
     )
+
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={'placeholder': 'Confirmar contraseña'}
+        )
+    )
+
 
     class Meta:
         model = User
@@ -30,19 +39,43 @@ class RegisterForm(forms.ModelForm):
             ),
         }
 
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+        if len(password) < 8:
+            raise forms.ValidationError(
+                {'password': 'La contraseña debe tener al menos 8 caracteres'}
+            )
+        if not contains_digit(password):
+            raise forms.ValidationError(
+                {'password': 'La contraseña debe tener al menos 1 dígito'}
+            )
+        if not contains_uppercase(password):
+            raise forms.ValidationError(
+                {'password': 'La contraseña debe tener al menos 1 mayúscula'}
+            )
+        if password != confirm_password:
+            raise forms.ValidationError(
+                {'confirm_password': 'Las contraseñas no coinciden'}
+            )
+        
     def clean_username(self):
         username = self.cleaned_data['username']
         user = User.objects.filter(username=username)
+        if not re.fullmatch(username_regex, username):
+            raise forms.ValidationError(
+                'Nombre de usuario no válido'
+            )
         if user:
             raise forms.ValidationError(
-                'El nombre de usuario ya ha sido ocupado por otro usuario'
+                'El nombre de usuario ya existe'
             )
         return username
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        print(email)
-        if not re.match(email_regex, email):
+        if not re.fullmatch(email_regex, email):
             raise forms.ValidationError(
                 'Correo no válido'
             )
@@ -52,6 +85,14 @@ class RegisterForm(forms.ModelForm):
                 'El correo ya ha sido ocupado por otro usuario'
             )
         return email
+
+    def clean_full_name(self):
+        full_name = self.cleaned_data['full_name']
+        if not re.fullmatch(full_name_regex, full_name):
+            raise forms.ValidationError(
+                'Solo se permiten letras y espacios'
+            )
+        return full_name
 
 
 class LoginForm(forms.Form):
@@ -75,13 +116,13 @@ class LoginForm(forms.Form):
         user = None
 
         if '@' in email_or_username:
-            if re.match(email_regex, email_or_username):
+            if re.fullmatch(email_regex, email_or_username):
                 user = User.objects.filter(email=email_or_username)
             else:
                 raise forms.ValidationError('Correo no válido')
 
         else:
-            if re.match(username_regex, email_or_username):
+            if re.fullmatch(username_regex, email_or_username):
                 user = User.objects.filter(username=email_or_username)
             else:
                 raise forms.ValidationError('Nombre de usuario no válido')
