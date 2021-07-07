@@ -103,12 +103,46 @@ nav {
   [class*="col-"] {
     width: 100%;
   }
+  .left-column, .right-column {
+    z-index: 9999;
+    position: fixed;
+    background-color: $accent-color;
+  }
+  .center-column {
+    margin-top: 45px;
+  }
+  .right-column {
+    bottom: 0;
+  }
+  .info {
+    display: none;
+  }
+  .arrow {
+    display: block;
+  }
 }
 
 @media only screen and (min-width: 600px) {
   /* For tablets: */
   @for $i from 1 through 12 {
     .col-m-#{$i} {width: $i * 8.33%;}
+  }
+  .left-column, .right-column {
+    z-index: 9999;
+    position: fixed;
+    background-color: $accent-color;
+  }
+  .center-column {
+    margin-top: 45px;
+  }
+  .right-column {
+    bottom: 0;
+  }
+  .info {
+    display: none;
+  }
+  .arrow {
+    display: block;
   }
 }
 
@@ -117,11 +151,43 @@ nav {
   @for $i from 1 through 12 {
     .col-l-#{$i} {width: $i * 8.33%;}
   }
+  .left-column, .right-column {
+    position: relative;
+    background-color: $background-color;
+  }
+  .center-column {
+    margin-top: 0;
+  }
+  .right-column {
+    bottom: 0;
+  }
+  .info {
+    display: inline-block;
+  }
+  .arrow {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
   /* For large desktop: */
   @for $i from 1 through 12 {
     .col-xl-#{$i} {width: $i * 8.33%;}
+  }
+  .left-column, .right-column {
+    position: relative;
+    background-color: $background-color;
+  }
+  .center-column {
+    margin-top: 0;
+  }
+  .right-column {
+    bottom: 0;
+  }
+  .info {
+    display: inline-block;
+  }
+  .arrow {
+    display: none;
   }
 }

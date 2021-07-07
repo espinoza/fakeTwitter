@@ -4,13 +4,12 @@ main {
   margin-top: 45px;
 }
 
-.logins {
-  margin-top: 20px;
+.info {
+  margin-top: 15px;
   padding: 15px;
   border: solid 1px $accent-color-alternative2;
   border-radius: 10px;
   background-color: $focus-background-color;
-  display: inline-block;
   li {
     margin: 10px 0;
   }
