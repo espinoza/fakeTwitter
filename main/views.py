@@ -92,16 +92,7 @@ def logout(request):
 @login_required
 def home(request, logged_user):
     """Main page with a list of tweets and a form to post a new tweet."""
-    form = TweetForm()
-    tweets = Tweet.objects.all().order_by('-created_at')
 
-    return render(request, template_name='home.html',
-                  context={'form': form, 'tweets': tweets})
-
-
-@login_required
-def post_message(request, logged_user):
-    """POST request to create a new tweet with ajax."""
     if request.method == 'POST':
         message = request.POST["message"]
         form = TweetForm(
@@ -126,4 +117,8 @@ def post_message(request, logged_user):
             "errors": form.errors,
         })
 
-    return redirect('home')
+    form = TweetForm()
+    tweets = Tweet.objects.all().order_by('-created_at')
+
+    return render(request, template_name='home.html',
+                  context={'form': form, 'tweets': tweets})

@@ -6,7 +6,7 @@ function sendTweet() {
 
   $.ajax({
     type: "POST",
-    url: "/home/post_message",
+    url: "/home",
     data: formData,
     dataType: "JSON",
   }).done(function(response) {
