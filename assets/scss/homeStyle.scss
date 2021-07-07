@@ -59,3 +59,44 @@ main {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+@media only screen and (max-width: 767px) {
+  /* For mobile phones and tablets: */
+  .left-column, .right-column {
+    z-index: 9999;
+    position: fixed;
+    background-color: $accent-color;
+  }
+  .center-column {
+    margin-top: 45px;
+  }
+  .right-column {
+    bottom: 0;
+  }
+  .info {
+    display: none;
+  }
+  .arrow {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop and large desktop: */
+  .left-column, .right-column {
+    position: relative;
+    background-color: $background-color;
+  }
+  .center-column {
+    margin-top: 0;
+  }
+  .right-column {
+    bottom: 0;
+  }
+  .info {
+    display: inline-block;
+  }
+  .arrow {
+    display: none;
+  }
+}
