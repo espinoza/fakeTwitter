@@ -102,11 +102,28 @@ def home(request, logged_user):
 @login_required
 def post_message(request, logged_user):
     """POST request to create a new tweet with ajax."""
-    message = request.POST["message"]
-    Tweet.objects.create(message=message, user=logged_user)
+    if request.method == 'POST':
+        message = request.POST["message"]
+        form = TweetForm(
+            data={
+                "message": message,
+            }
+        )
 
-    return JsonResponse({
-        "message": message,
-        "userFullName": logged_user.full_name,
-        "username": logged_user.username,
-    })
+        created_at = None
+
+        if form.is_valid():
+            new_tweet = Tweet.objects.create(
+                message=message, user=logged_user
+            )
+            created_at = new_tweet.created_at
+
+        return JsonResponse({
+            "message": message,
+            "userFullName": logged_user.full_name,
+            "username": logged_user.username,
+            "created_at": created_at,
+            "errors": form.errors,
+        })
+
+    return redirect('home')

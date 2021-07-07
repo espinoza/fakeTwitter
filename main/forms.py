@@ -39,6 +39,7 @@ class RegisterForm(forms.ModelForm):
         }
 
     def clean(self):
+        """Passwords validation in registration form."""
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
@@ -62,8 +63,10 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError(
                 {'confirm_password': 'Las contraseñas no coinciden'}
             )
+        return cleaned_data
         
     def clean_username(self):
+        """Username validation in registration form."""
         username = self.cleaned_data['username']
         user = User.objects.filter(username=username)
         if not re.fullmatch(username_regex, username):
@@ -73,6 +76,7 @@ class RegisterForm(forms.ModelForm):
         return username
 
     def clean_email(self):
+        """Email validation in registration form."""
         email = self.cleaned_data['email']
         if not re.fullmatch(email_regex, email):
             raise forms.ValidationError('Correo no válido')
@@ -84,6 +88,7 @@ class RegisterForm(forms.ModelForm):
         return email
 
     def clean_full_name(self):
+        """Full name validation in registration form."""
         full_name = self.cleaned_data['full_name']
         if not re.fullmatch(full_name_regex, full_name):
             raise forms.ValidationError('Solo se permiten letras y espacios')
@@ -104,6 +109,7 @@ class LoginForm(forms.Form):
     )
 
     def clean(self):
+        """Validation of email or username, and password, in login form."""
         cleaned_data = super().clean()
         email_or_username = cleaned_data.get('email_or_username')
         password = cleaned_data.get('password')
@@ -140,13 +146,24 @@ class LoginForm(forms.Form):
         return cleaned_data
 
 
-class TweetForm(forms.ModelForm):
+class TweetForm(forms.Form):
 
-    class Meta:
-        model = Tweet
-        fields = ['message']
-        widgets = {
-            'message': forms.Textarea(
-                attrs={'placeholder': '¿Qué hay de nuevo?'}
+    message = forms.CharField(
+        widget=forms.Textarea(
+            attrs={'placeholder': '¿Qué hay de nuevo?'}
+        )
+    )
+
+    def clean_message(self):
+        """Message validation in backend (already done in frontend)."""
+        message = self.cleaned_data['message']
+        if len(message) == 0:
+            raise forms.ValidationError(
+                "El mensaje no puede estar vacío."
             )
-        }
+        if len(message) > 249:
+            raise forms.ValidationError(
+                "Mensaje muy largo."
+            )
+        return message
+
