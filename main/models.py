@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class User(models.Model):
     full_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
@@ -9,6 +10,7 @@ class User(models.Model):
     def __str__(self):
         return f"User {self.username} '{self.full_name}'"
 
+
 class Login(models.Model):
     user = models.ForeignKey(to=User,
                              on_delete=models.CASCADE,
@@ -17,6 +19,7 @@ class Login(models.Model):
 
     def __str__(self):
         return f"Login at {self.datetime} by user {self.user.username}"
+
 
 class Tweet(models.Model):
     message = models.CharField(max_length=249)
@@ -28,3 +31,7 @@ class Tweet(models.Model):
     def __str__(self):
         return f"Tweet by {self.user.username} at {self.created_at}.\n \
                  Message: `{self.message}`"
+
+    @property
+    def formatted_created_at(self):
+        return self.created_at.strftime("%d/%m/%Y a las %H:%M (%Z)")

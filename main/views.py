@@ -107,13 +107,14 @@ def home(request, logged_user):
             new_tweet = Tweet.objects.create(
                 message=message, user=logged_user
             )
-            created_at = new_tweet.created_at
+            formatted_created_at = new_tweet.created_at \
+                .strftime("%d/%m/%Y a las %H:%M (%Z)")
 
         return JsonResponse({
             "message": message,
             "userFullName": logged_user.full_name,
             "username": logged_user.username,
-            "created_at": created_at,
+            "created_at": formatted_created_at,
             "errors": form.errors,
         })
 

@@ -36,6 +36,15 @@ main {
   font-size: 20px;
 }
 
-.username {
+.tweet-body {
+  font-size: 20px;
+}
+
+.tweet-footer, .username {
   color: $secondary-color;
+}
+
+[class*="tweet-"] {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

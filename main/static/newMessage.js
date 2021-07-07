@@ -24,10 +24,11 @@ function sendTweet() {
 
 }
 
-function tweetHtml(message, userFullName, username, created_at, errors) {
+function tweetHtml(message, userFullName, username, created_at) {
   return '<div class="tweet"><div class="tweet-header">'
          + '<span class="full-name">' + userFullName 
          + '</span> <span class="username">@' + username
          + '</span></div><div class="tweet-body">' + message
+         + '</div><div class="tweet-footer">' + created_at
          + '</div></div>';
 }
