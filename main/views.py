@@ -92,21 +92,42 @@ def logout(request):
 @login_required
 def home(request, logged_user):
     """Main page with a list of tweets and a form to post a new tweet."""
+
+    if request.method == 'POST':
+        message = request.POST["message"]
+        form = TweetForm(
+            data={
+                "message": message,
+            }
+        )
+
+        created_at = None
+
+        if form.is_valid():
+            new_tweet = Tweet.objects.create(
+                message=message, user=logged_user
+            )
+
+        return JsonResponse({
+            "message": message,
+            "userFullName": logged_user.full_name,
+            "username": logged_user.username,
+            "created_at": new_tweet.formatted_created_at,
+            "errors": form.errors,
+        })
+
     form = TweetForm()
     tweets = Tweet.objects.all().order_by('-created_at')
+    user_last_tweet = Tweet.objects.filter(user=logged_user).last()
+    user_last_logins = Login.objects.filter(user=logged_user) \
+                                    .order_by("-datetime")[:10]
 
     return render(request, template_name='home.html',
-                  context={'form': form, 'tweets': tweets})
+                  context={
+                      'form': form,
+                      'tweets': tweets,
+                      'user_last_tweet': user_last_tweet,
+                      'user_last_logins': user_last_logins,
+                      'user': logged_user,
+                  })
 
-
-@login_required
-def post_message(request, logged_user):
-    """POST request to create a new tweet with ajax."""
-    message = request.POST["message"]
-    Tweet.objects.create(message=message, user=logged_user)
-
-    return JsonResponse({
-        "message": message,
-        "userFullName": logged_user.full_name,
-        "username": logged_user.username,
-    })

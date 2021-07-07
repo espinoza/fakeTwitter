@@ -21,6 +21,12 @@ html {
   color: $primary-color;
 }
 
+main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
 nav {
   background-color: $accent-color;
   color: white;
@@ -55,11 +61,14 @@ nav {
   }
 }
 
+.row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 [class*="col-"] {
-  float: left;
-  &:after {
-  content: "\200b";
-  }
+  text-align: center;
 }
 
 .primary-btn {
@@ -82,6 +91,14 @@ nav {
   &:focus {
     background-color: $focus-background-color2;
   }
+}
+
+.quote {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 [class$="-btn"] {

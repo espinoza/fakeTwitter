@@ -4,11 +4,44 @@ main {
   margin-top: 45px;
 }
 
+.info {
+  width: 85%;
+  margin-top: 15px;
+  padding: 15px;
+  border: solid 1px $accent-color-alternative2;
+  border-radius: 10px;
+  background-color: $focus-background-color;
+  li {
+    margin: 10px 0;
+  }
+}
+
+.arrow {
+  margin: 0;
+}
+
+#last-tweet-info {
+  margin-top: 15px;
+}
+
+#registration-info {
+  margin-top: 15px;
+}
+
 .tweet, #new-tweet {
   margin: 15px 10px;
   padding: 10px 15px;
   border: 1px solid $secondary-color;
   border-radius: 10px;
+  text-align: left;
+}
+
+#new-tweet {
+  text-align: right;
+}
+
+.tweet {
+  text-align: left;
 }
 
 .tweet:hover {
@@ -31,11 +64,77 @@ main {
   }
 }
 
+#send-tweet {
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 18px;
+  max-width: 50vw;
+}
+
 .full-name {
   font-weight: bold;
   font-size: 20px;
 }
 
 .username {
+  color: $accent-color-alternative2;
+  
+}
+
+.tweet-body {
+  font-size: 20px;
+}
+
+.tweet-footer, .date {
   color: $secondary-color;
+}
+
+[class*="tweet-"] {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 767px) {
+  /* For mobile phones and tablets: */
+  .left-column, .right-column {
+    z-index: 9999;
+    position: fixed;
+    background-color: $accent-color;
+  }
+  .center-column {
+    margin-top: 25px;
+  }
+  .right-column {
+    bottom: 0;
+  }
+  .info {
+    display: none;
+    background-color: $accent-color;
+    border: none;
+    color: white;
+    margin: 0 auto;
+  }
+  .arrow {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop and large desktop: */
+  .left-column, .right-column {
+    position: relative;
+    background-color: $background-color;
+  }
+  .center-column {
+    margin-top: 0;
+  }
+  .right-column {
+    bottom: 0;
+  }
+  .info {
+    display: inline-block !important;
+  }
+  .arrow {
+    display: none;
+  }
 }
