@@ -48,7 +48,7 @@ nav {
     flex-grow: 1;
     text-align: end;
     padding-right: 20px;
-    margin: auto 0 auto 0;
+    margin: 5px 0 5px;
     a {
       text-decoration: none;
       &:visited {
@@ -113,6 +113,12 @@ nav {
   /* For mobile phones: */
   [class*="col-"] {
     width: 100%;
+  }
+  #main-title {
+    padding-left: 10px !important;
+  }
+  #user-options {
+    padding-right: 10px !important;
   }
 }
 
