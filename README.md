@@ -1,15 +1,24 @@
 # fakeTwitter
 
-A simple Twitter clon.
+A simple Twitter clone.
+Responsive, without using CSS framework.
 
 [Visit here](http://52.15.51.235/)
 
-## Requirements
+## Screenshots
+
+![image](https://user-images.githubusercontent.com/42013600/127357324-e9e890b6-b52a-4f2a-a335-6480d015c468.png) &nbsp;&nbsp;&nbsp; ![image](https://user-images.githubusercontent.com/42013600/127358042-ba6d0add-a647-4a32-a8c1-097aade899d3.png)
+
+![image](https://user-images.githubusercontent.com/42013600/127357449-4b2fa992-6f4c-4178-85bd-4bc0085db3b4.png)
+
+## Installation
+
+### Requirements
 * `Python3`
 * `Postgresql`
 * `Node.js` with `Node-Sass`
 
-## How to install
+### How to install
 
 1. Clone this repository: `git clone https://github.com/espinoza/fakeTwitter`
 2. Enter the directory: `cd fakeTwitter`
